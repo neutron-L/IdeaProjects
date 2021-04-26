@@ -1,0 +1,2 @@
+# IdeaProjects
+linux + idea
