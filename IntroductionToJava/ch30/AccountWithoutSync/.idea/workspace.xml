@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bad260b1-d394-49ae-9f89-551442a0dce0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1k5vMInVEU2jOvwLqICNuB1U1B1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bad260b1-d394-49ae-9f89-551442a0dce0" name="Default Changelist" comment="" />
+      <created>1605003219042</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605003219042</updated>
+      <workItem from="1605003220066" duration="47000" />
+      <workItem from="1605014503016" duration="8000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="886" y="132" width="1024" height="848" key="#Project_Structure" timestamp="1605003238312">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="886" y="132" width="1024" height="848" key="#Project_Structure/0.30.1920.1050@0.30.1920.1050" timestamp="1605003238312" />
+    <state x="1218" y="300" width="424" height="516" key="FileChooserDialogImpl" timestamp="1605003253968">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="1218" y="300" width="424" height="516" key="FileChooserDialogImpl/0.30.1920.1050@0.30.1920.1050" timestamp="1605003253968" />
+    <state x="1034" y="157" width="802" height="799" key="new project wizard" timestamp="1605003265693">
+      <screen x="0" y="30" width="1920" height="1050" />
+    </state>
+    <state x="1034" y="157" width="802" height="799" key="new project wizard/0.30.1920.1050@0.30.1920.1050" timestamp="1605003265693" />
+  </component>
+</project>
