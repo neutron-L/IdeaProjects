@@ -1,16 +1,20 @@
-package org.example;
+package org.example.pojo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+//会被spring容器托管
+@Component
 public class Hello {
+    @Value("Jack")
     private String name;
     private String[] books;
     private int age;
 
-    public Hello(String name, int age) {
-
+    public Hello() {
     }
 
     public String[] getBooks() {
@@ -37,7 +41,6 @@ public class Hello {
     }
 
     public String getName() {
-        System.out.println("Name is " + this.name);
         return name;
     }
 }

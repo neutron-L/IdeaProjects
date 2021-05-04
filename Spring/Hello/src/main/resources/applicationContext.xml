@@ -9,30 +9,6 @@
        http://www.springframework.org/schema/context/spring-context.xsd
 ">
 
-    <context:annotation-config/>
-
-    <bean id="hello" class="org.example.Hello" name="h w e b">
-        <constructor-arg index="0" value="12"/>
-        <constructor-arg index="1" value="1"/>
-        <!--        ref 引用spring中创建好的对象-->
-        <property name="name" value="Lilin" />
-        <property name="scores">
-            <set>
-                <value>12.2</value>
-            </set>
-        </property>
-        <property name="books">
-            <array>
-                <value>first</value>
-                <value>"second"</value>
-            </array>
-        </property>
-    </bean>
-
-    <bean id="user" class="org.example.Hello" >
-
-    </bean>
-
 
 
 </beans>
