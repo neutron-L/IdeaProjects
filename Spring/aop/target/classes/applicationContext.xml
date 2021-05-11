@@ -13,12 +13,29 @@
     <bean id="log" class="org.example.log.Log" />
     <bean id="afterLog" class="org.example.log.AfterLog" />
 
-    <aop:config>
-<!--        切入点:expression 表达式 execution(要执行的位置）-->
-        <aop:pointcut id="pointcut" expression="execution(* org.example.service.UserServiceImpl.*(..))"/>
-<!--        执行环绕增加-->
-        <aop:advisor advice-ref="log" pointcut-ref="pointcut" />
-        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut" />
-    </aop:config>
 
+<!--    方式三-->
+    <bean id="annotationPointCut" class="org.example.diy.AnnotationPointCut" />
+<!--    开启注解支持-->
+    <aop:aspectj-autoproxy />
+<!--    方式一-->
+<!--    <aop:config>-->
+<!--&lt;!&ndash;        切入点:expression 表达式 execution(要执行的位置）&ndash;&gt;-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* org.example.service.UserServiceImpl.*(..))"/>-->
+<!--&lt;!&ndash;        执行环绕增加&ndash;&gt;-->
+<!--&lt;!&ndash;        <aop:advisor advice-ref="log" pointcut-ref="pointcut" />&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut" />-->
+<!--    </aop:config>-->
+<!--方式二-->
+<!--    <bean id="diy" class="org.example.diy.DiyPointCut" />-->
+<!--    <aop:config>-->
+<!--&lt;!&ndash;        切面&ndash;&gt;-->
+<!--        <aop:aspect ref="diy">-->
+<!--&lt;!&ndash;            切入点&ndash;&gt;-->
+<!--            <aop:pointcut id="point" expression="execution(* org.example.service.UserServiceImpl.*(..))"/>-->
+<!--&lt;!&ndash;            通知&ndash;&gt;-->
+<!--            <aop:before method="before" pointcut-ref="point"/>-->
+<!--            <aop:after method="after" pointcut-ref="point" />-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
 </beans>
