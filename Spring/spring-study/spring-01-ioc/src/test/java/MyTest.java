@@ -12,7 +12,7 @@ public class MyTest {
         UserServiceImpl userServiceImpl = context.getBean("userServiceImpl", UserServiceImpl.class);
         userServiceImpl.getUser();
 
-        User user = context.getBean("user", User.class);
+        User user = context.getBean("a", User.class);
 //        User user1 = context.getBean("user1", User.class);
 //        User user2 = context.getBean("user2", User.class);
         User user3 = context.getBean("user3", User.class);

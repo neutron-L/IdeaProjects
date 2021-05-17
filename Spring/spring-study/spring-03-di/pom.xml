@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-01-ioc</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>5.3.6</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <artifactId>spring-03-di</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

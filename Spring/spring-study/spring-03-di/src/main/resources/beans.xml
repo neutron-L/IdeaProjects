@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.example.pojo.Address">
+<property name="address" value="xian" />
+    </bean>
+
+    <bean id="student" class="com.example.pojo.Student">
+<!--        普通值注入-->
+        <property name="name" value="lilin"/>
+<!--        bean注入 ref-->
+        <property name="address" ref="address"/>
+<!--        array注入 ref-->
+
+        <property name="books">
+            <array>
+                <value>C Primer Plus</value>
+            </array>
+        </property>
+
+<!--        list-->
+        <property name="hobbies">
+            <list>
+                <value>go to gymnasium</value>
+            </list>
+        </property>
+
+<!--        map-->
+        <property name="card">
+            <map>
+                <entry key="id" value="123"/>
+                <entry key="num" value="1245" />
+            </map>
+        </property>
+
+<!--        set-->
+        <property name="games">
+            <set>
+                <value>LOL</value>
+            </set>
+        </property>
+
+<!--        null-->
+        <property name="wife">
+            <null/>
+        </property>
+<!--        properties-->
+        <property name="info">
+            <props>
+                <prop key="idnumber">962</prop>
+                <prop key="name">lilin</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

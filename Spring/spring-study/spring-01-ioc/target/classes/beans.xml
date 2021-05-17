@@ -14,8 +14,13 @@
 <property name="userDao" ref="oracleImpl"/>
     </bean>
 
+<!--
+id:   bean的唯一标识符,也就是相当于我们所学的对象名
+class: bean对象所对应的全限定名: 包名+类型
+name: 别名,而且可以设置多个,可以通过逗号,分号和空格分割
+-->
 
-    <bean id="user" class="com.example.pojo.User">
+    <bean id="user" class="com.example.pojo.User" name="a, b, c">
         <property name="name" value="lilin" />
     </bean>
 
@@ -30,6 +35,6 @@
 
 <!--     参数名字-->
     <bean id="user3" class="com.example.pojo.User">
-        <constructor-arg type="java.lang.String" value="zhengke" />
+        <constructor-arg name="s" value="zhengke" />
     </bean>
 </beans>
