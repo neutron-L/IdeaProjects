@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--  A-本地jar包位置     -->
+    <!--<classPathEntry-->
+            <!--location="D:\develop\Maven\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />-->
+    <!--<context id="DB2Tables"  targetRuntime="MyBatis3">-->
+    <classPathEntry
+    location="D:\develop\Maven\repository\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar" />
+            <!--location="C:\Users\95896\.m2\repository\mysql\mysql-connector-java\8.0.20\mysql-connector-java-8.0.20.jar" />-->
+
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--  B-数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://47.93.117.9:3306/cabbage"
+                        userId="root"
+                        password="Chric0218">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <!--生成项目模块内容-->
+
+        <!-- 1-生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="cn.edu.bupt.OcrApp.domain.generated" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 2-生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapping.OcrApp.generated" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 3-生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.edu.bupt.OcrApp.mapper.generated" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--生成全部表tableName设为%-->
+        <!--<table tableName="%">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="tool_qiniu_config">-->
+            <!--<generatedKey column="config_id" sqlStatement="MySql" identity="true"/>-->
+            <!--&lt;!&ndash; 字段为text 会生成withBlobs&ndash;&gt;-->
+            <!--<columnOverride column ="access_key" javaType="java.lang.String" jdbcType ="VARCHAR"/>-->
+            <!--<columnOverride column ="secret_key" javaType="java.lang.String" jdbcType ="VARCHAR"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="tool_MinIO_picture">-->
+            <!--<generatedKey column="picture_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table schema="" tableName="germination_obs"></table>-->
+        <!--<table schema="" tableName="flowering_obs"></table>-->
+        <!--<table schema="" tableName="harvest_obs"></table>-->
+        <!--<table schema="" tableName="rosette_obs"></table>-->
+        <!--<table schema="" tableName="heading_obs"></table>-->
+        <!--<table schema="" tableName="seed_harvest_time_obs"></table>-->
+        <!--<table schema="" tableName="general_eval"></table>-->
+        <!--<table schema="" tableName="storage_obs"></table>-->
+        <!--<table schema="" tableName="seedling_obs"></table>-->
+        <!--<table tableName="flowering_obs">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="germination_obs">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="character_observation">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="material_info">-->
+
+        <!--</table>-->
+        <!--<table tableName="planting_info">-->
+
+        <!--&lt;!&ndash;</table>&ndash;&gt;-->
+        <!--<table tableName="heading_obs">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="rosette_obs">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="seedling_obs">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="general_eval">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="storage_obs">-->
+            <!--<generatedKey column="observation_id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
+        <!-- 4-要生成的potato表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+<!--        <table schema="" tableName="cross_test"></table>
+        <table schema="" tableName="earlymaturing_identify"></table>
+        <table schema="" tableName="experiment_state"></table>
+        <table schema="" tableName="farmland"></table>
+        <table schema="" tableName="field"></table>
+        <table schema="" tableName="latematuring_identify"></table>
+        <table schema="" tableName="plant_test"></table>
+        <table schema="" tableName="plot"></table>
+        <table schema="" tableName="process_identify"></table>
+        <table schema="" tableName="project"></table>
+        <table schema="" tableName="shot"></table>
+        <table schema="" tableName="species"></table>
+        <table schema="" tableName="sprout_test"></table>
+        <table schema="" tableName="strain_test"></table>
+        <table schema="" tableName="earlymaturing_preparation"></table>
+        <table schema="" tableName="latematuring_preparation"></table>
+        <table schema="" tableName="process_preparation"></table>
+        <table schema="" tableName="species_compare"></table>
+        <table schema="" tableName="species_filter"></table>
+        <table schema="" tableName="species_detail"></table>
+        <table schema="" tableName="species_relation"></table>
+        <table schema="" tableName="plot"></table>-->
+
+        <!--<table schema="" tableName="commontest"></table>
+        <table schema="" tableName="experiment_field"></table>
+        <table schema="" tableName="experiment_type"></table>
+        <table schema="" tableName="farm"></table>
+        <table schema="" tableName="global_species"></table>
+        <table schema="" tableName="local_species"></table>-->
+        <!--<table schema="" tableName="commontest"></table>-->
+
+
+
+
+
+
+        <!--生成Auth模块内容-->
+
+<!--        &lt;!&ndash; 1-生成模型的包名和位置&ndash;&gt;
+        <javaModelGenerator targetPackage="edu.bupt.auth.domain.generated" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        &lt;!&ndash; 2-生成映射文件的包名和位置&ndash;&gt;
+        <sqlMapGenerator targetPackage="mapping.auth.generated" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        &lt;!&ndash; 3-生成DAO的包名和位置&ndash;&gt;
+        <javaClientGenerator type="XMLMAPPER" targetPackage="edu.bupt.auth.mapper.generated" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        &lt;!&ndash; 4-要生成的potato表 tableName是数据库中的表名或视图名 domainObjectName是实体类名&ndash;&gt;
+        <table schema="" tableName="cross_test"></table>
+        <table schema="" tableName="earlymaturing_identify"></table>
+        <table schema="" tableName="experiment_state"></table>
+        <table schema="" tableName="farmland"></table>
+        <table schema="" tableName="field"></table>-->
+
+
+
+
+
+    </context>
+</generatorConfiguration>

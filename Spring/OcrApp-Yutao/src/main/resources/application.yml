@@ -1,0 +1,131 @@
+server:
+  port: 8021
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  #mysql配置
+  datasource:
+    url: jdbc:mysql://47.93.117.9:3306/OcrApp?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8
+    username: root
+    password: Chric0218
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 下面为连接池的补充设置，应用到上面所有数据源中
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  #配置文件传输
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 5MB
+      max-request-size: 10MB
+  redis:
+#    host: 121.36.229.144
+#    host: localhost
+    host: 47.93.117.9
+    password: Chric0218
+    port: 6380
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:mapping/**/*.xml,classpath:dao/**/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: cn.edu.bupt.OcrApp.domain # 注意：对应实体类的路径 xml中可不用写全限定类名
+  configuration:
+    map-underscore-to-camel-case: true # 使得bean的驼峰命名和数据库的_可以互相转换
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
+
+
+token:
+  expire:
+    seconds: 7200
+  jwtSecret: (XIAO:)_$^11244^%$_(WEI:)_@@++--(LAO:)_++++_.sds_(SHI:)
+logging:
+  level:
+    root: info
+
+#OcrApp:
+#  upload:
+#    allowTypes:
+#      - image/png
+#      - image/jpeg
+#      - image/bmp
+#      - image/jpg
+#  character:
+#    obsPeriods:
+#      - 发芽期
+#      - 幼苗期
+#      - 莲座期
+#      - 结球期
+#      - 收获期
+#      - 储藏期
+#      - 现蕾开花期
+#      - 结荚与种子收获期
+#      - 总评时期
+#    resistances:
+#      - 病毒病抗性鉴定
+#      - 霜霉病抗性鉴定
+#      - 黑斑病抗性
+#      - 黑腐病抗性
+#      - 软腐病抗性
+#      - 根肿病抗性
+#七牛云
+qiniu:
+  # 文件大小 /M
+  max-size: 15
+
+
+## minio文件系统
+minio:
+    url: http://47.93.117.9:9001
+    accessKey: ChricHuangMinIO
+    secretKey: ChricHuangMinIO
+    bucketName: OcrApp
+      # 文件大小 /M
+    max-size: 15
+
+
+
+
+
+

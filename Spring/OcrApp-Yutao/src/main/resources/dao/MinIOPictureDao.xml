@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.bupt.OcrApp.dao.MinIODao">
+    <select id="photoList" resultType="cn.edu.bupt.OcrApp.domain.generated.ToolMinioPicture">
+        select * from tool_minio_picture t
+        <where>
+            <if test="obsPeriod != null and obsPeriod != ''">
+                and t.obs_period like concat('%', #{obsPeriod}, '%')
+            </if>
+            <if test="specCharacter != null and specCharacter != ''">
+                and t.spec_character like concat('%', #{specCharacter}, '%')
+            </if>
+
+        </where>
+    </select>
+
+    <select id="specCharacterPhoto" resultType="cn.edu.bupt.OcrApp.domain.generated.ToolMinioPicture" >
+        select * from tool_minio_picture t
+        WHERE t.spec_character = #{specCharacter} AND t.observation_id = #{observationId}
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.bupt.OcrApp.dao.CharacterDao">
+    <resultMap id="CharacterMeasurementRstMap" type="cn.edu.bupt.OcrApp.model.CharacterMeasurement">
+        <result column="specific_character" property="specificCharacter"/>
+        <result column="measurementBasis" property="measurementBasis"/>
+        <result column="observation_method" property="observationMethod"/>
+    </resultMap>
+
+    <select id="findMeasurementBySpecificCharacter" resultMap="CharacterMeasurementRstMap">
+        SELECT specific_character,GROUP_CONCAT(CONCAT_WS(' ',description,measurement_basis) ,'')  measurementBasis,observation_method
+        FROM character_observation
+        WHERE specific_character = #{SpecificCharacter}
+        GROUP BY specific_character
+    </select>
+
+    <!--<select id="findCharacterDescriptionBySpecificCharacter" resultType="java.lang.String">-->
+    <!--SELECT description FROM character_observation WHERE specific_character = #{SpecificCharacter}-->
+    <!--</select>-->
+    <select id="findMeasurementByObservationPeriod" resultMap="CharacterMeasurementRstMap">
+        SELECT specific_character,GROUP_CONCAT(CONCAT_WS(' ',description,measurement_basis) ,'')  measurementBasis,observation_method
+        FROM character_observation
+        WHERE observation_period = #{ObservationPeriod}
+        GROUP BY specific_character
+    </select>
+
+    <select id="findHistoryDataByUser" resultType="cn.edu.bupt.OcrApp.vo.HistoryData">
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'幼苗期' as obs_period FROM seedling_obs WHERE user_id = #{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'发芽期' as obs_period FROM germination_obs WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'现蕾开花期' as obs_period FROM flowering_obs WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'收获期' as obs_period FROM harvest_obs WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'结球期' as obs_period FROM `heading_obs` WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'莲座期 ' as obs_period FROM rosette_obs WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,' 结荚与种子收获期' as obs_period FROM seed_harvest_time_obs WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'储藏期' as obs_period FROM storage_obs WHERE user_id =#{userId}
+UNION
+SELECT observation_id,material_type,material_number,'群体观测无单株编号' as plant_number,location,investigating_time,investigator,'总评时期' as obs_period FROM general_eval WHERE user_id =#{userId}
+ORDER BY
+input_time DESC
+    </select>
+
+    <select id="findAllHistoryObsData" resultType="cn.edu.bupt.OcrApp.vo.HistoryData">
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'幼苗期' as obs_period FROM seedling_obs
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'发芽期' as obs_period FROM germination_obs
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'现蕾开花期' as obs_period FROM flowering_obs
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'收获期' as obs_period FROM harvest_obs
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'结球期' as obs_period FROM `heading_obs`
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'莲座期 ' as obs_period FROM rosette_obs
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,' 结荚与种子收获期' as obs_period FROM seed_harvest_time_obs
+UNION
+SELECT observation_id,material_type,material_number,plant_number,location,investigating_time,investigator,'储藏期' as obs_period FROM storage_obs
+UNION
+SELECT observation_id,material_type,material_number,'群体观测无单株编号' as plant_number,location,investigating_time,investigator,'总评时期' as obs_period FROM general_eval
+ORDER BY
+input_time DESC
+    </select>
+
+    <select id="listCharacterObservation" resultType="cn.edu.bupt.OcrApp.domain.generated.CharacterObservation">
+        select * from character_observation t
+        <where>
+            <if test="observationPeriod != null and observationPeriod != ''">
+                and t.observation_period like concat('%', #{observationPeriod}, '%')
+            </if>
+            <if test="characteristics != null and characteristics != ''">
+                and t.characteristics like concat('%', #{characteristics}, '%')
+            </if>
+            <if test="specificCharacter != null and specificCharacter != ''">
+                and t.specific_character = #{specificCharacter}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findHistoryDataByUserAndSearchCriteria" resultType="cn.edu.bupt.OcrApp.dto.ObsJoinMaterialInfo">
+        SELECT
+        o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'幼苗期'
+        as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM seedling_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT
+        o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'发芽期'
+        as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM germination_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'现蕾开花期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM flowering_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'收获期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM harvest_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'结球期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM heading_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'莲座期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM rosette_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'结荚与种子收获期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM seed_harvest_time_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        UNION
+        SELECT o.observation_id,o.material_type,o.material_number,o.plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'储藏期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM storage_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findHistoryDataByUserAndSearchCriteriaGeneralEvalPeriod" resultType="cn.edu.bupt.OcrApp.dto.ObsJoinMaterialInfo">
+        SELECT o.observation_id,o.material_type,o.material_number,'群体观测无单株编号' as plant_number,o.location,o.investigating_time,o.input_time,o.investigator,'总评时期' as obs_period ,m.`year`,m.season,m.origin,m.feature,m.odd_leeds,m.experiment,m.paternal,m.maternal
+        FROM general_eval o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+</mapper>

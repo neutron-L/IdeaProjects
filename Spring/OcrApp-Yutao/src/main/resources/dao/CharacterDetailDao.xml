@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.bupt.OcrApp.dao.CharacterDetailDao">
+
+    <select id="findDataDetailByUserAndSearchCriteriaGerminationObs"
+            resultType="cn.edu.bupt.OcrApp.dto.GerminationObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM germination_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+
+    <select id="findDataDetailByUserAndSearchCriteriaFloweringObs"
+            resultType="cn.edu.bupt.OcrApp.dto.FloweringObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM flowering_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+
+    <select id="findDataDetailByUserAndSearchCriteriaHarvestObs"
+            resultType="cn.edu.bupt.OcrApp.dto.HarvestObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM harvest_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findDataDetailByUserAndSearchCriteriaHeadingObs"
+            resultType="cn.edu.bupt.OcrApp.dto.HeadingObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM heading_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findDataDetailByUserAndSearchCriteriaRosetteObs"
+            resultType="cn.edu.bupt.OcrApp.dto.RosetteObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM rosette_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findDataDetailByUserAndSearchCriteriaSeedHarvestTimeObs"
+            resultType="cn.edu.bupt.OcrApp.dto.SeedHarvestTimeObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM seed_harvest_time_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findDataDetailByUserAndSearchCriteriaSeedlingObs"
+            resultType="cn.edu.bupt.OcrApp.dto.SeedlingObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM seedling_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+    <select id="findDataDetailByUserAndSearchCriteriaStorageObs"
+            resultType="cn.edu.bupt.OcrApp.dto.StorageObsDetail">
+        SELECT o.*, m.`year` material_year
+        FROM storage_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="plantNumber != null and plantNumber != ''">
+                and o.plant_number like concat('%', #{plantNumber}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+
+
+    <select id="findDataDetailByUserAndSearchCriteriaGeneralEval"
+            resultType="cn.edu.bupt.OcrApp.dto.GeneralEvalDetail">
+        SELECT o.*, m.`year` material_year
+        FROM seedling_obs o INNER JOIN material_info m ON o.material_number = m.material_number
+        <where>
+            <if test="userId != null and userId != ''">
+                and o.user_id = #{userId}
+            </if>
+            <if test="year != null and year != ''">
+                and m.year like concat('%', #{year}, '%')
+            </if>
+            <if test="materialNumberRemoveYear != null and materialNumberRemoveYear != ''">
+                and SUBSTR(m.material_number,5) = #{materialNumberRemoveYear}
+            </if>
+        </where>
+        ORDER BY
+        input_time DESC
+    </select>
+</mapper>
