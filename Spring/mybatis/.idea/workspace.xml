@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b9c6144-84d7-4194-b589-60a4ae26698b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f31b8d6b-7fde-4c74-b2cc-8da88164a947.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f31b8d6b-7fde-4c74-b2cc-8da88164a947/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f31b8d6b-7fde-4c74-b2cc-8da88164a947/storage_v2/_src_/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/example/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/example/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/example/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/example/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3b9c6144-84d7-4194-b589-60a4ae26698b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,7 +168,7 @@
       <workItem from="1620991047726" duration="611000" />
       <workItem from="1621152983064" duration="4574000" />
       <workItem from="1621157642310" duration="288000" />
-      <workItem from="1621157975587" duration="2442000" />
+      <workItem from="1621157975587" duration="2955000" />
     </task>
     <servers />
   </component>
