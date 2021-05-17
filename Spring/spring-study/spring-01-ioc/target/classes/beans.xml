@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mysqlImpl" class="com.example.dao.UserDaoMysqlImpl">
+    </bean>
+
+    <bean id="oracleImpl" class="com.example.dao.UserDaoOracleImpl">
+    </bean>
+
+    <bean id="userServiceImpl" class="com.example.service.UserServiceImpl">
+<!--        ref引用spring容器中创建好的对象 -->
+<property name="userDao" ref="oracleImpl"/>
+    </bean>
+
+
+    <bean id="user" class="com.example.pojo.User">
+        <property name="name" value="lilin" />
+    </bean>
+
+<!--    index-->
+    <bean id="user1" class="com.example.pojo.User">
+    <constructor-arg index="0" value="like"/>
+    </bean>
+<!--    type 不建议使用-->
+    <bean id="user2" class="com.example.pojo.User">
+        <constructor-arg type="java.lang.String" value="hke" />
+    </bean>
+
+<!--     参数名字-->
+    <bean id="user3" class="com.example.pojo.User">
+        <constructor-arg type="java.lang.String" value="zhengke" />
+    </bean>
+</beans>
