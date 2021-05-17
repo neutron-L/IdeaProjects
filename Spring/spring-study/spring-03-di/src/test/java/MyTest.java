@@ -8,10 +8,7 @@ public class MyTest {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         Student student = context.getBean("student", Student.class);
-        System.out.println(student.getName());
-
-        for (String book : student.getBooks())
-            System.out.println(book);
+        System.out.println(student);
     }
 
     @Test

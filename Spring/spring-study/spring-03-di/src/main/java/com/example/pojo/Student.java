@@ -1,9 +1,6 @@
 package com.example.pojo;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 public class Student {
     private String name;
@@ -78,5 +75,19 @@ public class Student {
 
     public void setWife(String wife) {
         this.wife = wife;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", address=" + address.getAddress() +
+                ", books=" + Arrays.toString(books) +
+                ", hobbies=" + hobbies +
+                ", card=" + card +
+                ", games=" + games +
+                ", info=" + info +
+                ", wife='" + wife + '\'' +
+                '}';
     }
 }
