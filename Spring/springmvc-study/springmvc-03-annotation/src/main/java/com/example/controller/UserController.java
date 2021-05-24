@@ -11,8 +11,8 @@ import java.util.*;
 @RequestMapping(value="/user")
 @Controller
 public class UserController {
-    private static List<User>userList;
-    static {
+    private List<User> userList;
+    {
         userList = new ArrayList<User>();
     }
 
