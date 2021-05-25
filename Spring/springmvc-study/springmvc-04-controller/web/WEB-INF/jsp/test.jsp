@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-${msg}
+Hi, I am ${name}, I like ${habit}
 </body>
 </html>
