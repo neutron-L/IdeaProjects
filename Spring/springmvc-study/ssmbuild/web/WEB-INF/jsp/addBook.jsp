@@ -30,12 +30,12 @@
     <form action="${PageContext.request.contextPath}/book/addBook" method="get">
         <div class="form-group">
             <label for="bkname">书籍名称</label>
-            <input type="text" name="bookName" class="form-control" id="bkname" placeholder="BookName" required>
+            <input type="text" name="name" class="form-control" id="bkname" placeholder="BookName" required>
         </div>
 
         <div class="form-group">
             <label for="bkcount">书籍数量</label>
-            <input type="text" name="bookCounts" class="form-control" id="bkcount" placeholder="BookName" required>
+            <input type="text" name="counts" class="form-control" id="bkcount" placeholder="BookName" required>
         </div>
 
         <div class="form-group">

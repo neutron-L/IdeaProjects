@@ -6,8 +6,8 @@
 
     <!--增加一个Book-->
     <insert id="addUser" parameterType="User">
-        insert into spring.user(name,password)
-        values (#{name}, #{password})
+        insert into spring.user(username,password)
+        values (#{username}, #{password})
     </insert>
 
 

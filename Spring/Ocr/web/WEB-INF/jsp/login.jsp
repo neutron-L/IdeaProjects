@@ -26,7 +26,7 @@
 
         <input type="submit" value="Login">
     </form>
-    <p>No account?</p><a href="register.jsp">Go to register</a>
+    <p>No account?</p><a href="${pageContext.request.contextPath}/user/register">Go to register</a>
 
 </div>
 <script>

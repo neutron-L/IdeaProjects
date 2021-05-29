@@ -16,7 +16,9 @@
 </head>
 <body>
 <div>
-    <form method="post" action="${pageContext.request.contextPath}/record/upload">
+    <form method="post" action="${pageContext.request.contextPath}/record/upload"
+          enctype="multipart/form-data">
+        <h3>PHOTO</h3>
         <div id="result" align="left">
             <div id="imgDiv" style="display: none;">
                 <img id="img" name="photo" style="height: 300px;width: 250px;margin-left: 10%;"/>
@@ -24,7 +26,7 @@
         </div>
         <div id="info" align="right">
             choose photo:
-            <input type="file" id="file" name="file" capture="camera" accept="image/jpeg,image/png,image/jpeg,image/gif">
+            <input type="file" id="file" name="photo" capture="camera" accept="image/jpeg,image/png,image/jpeg,image/gif">
         </div>
         <input name="url" type="submit" value="method1">
         <input name="url" type="submit" value="method2">
@@ -38,6 +40,7 @@
     $("#file").change(function(event) {
         var files = event.target.files, file;
         if (files && files.length > 0) {
+
 
             file = files[0];
             if (file.size > 1024 * 1024 * 2) {

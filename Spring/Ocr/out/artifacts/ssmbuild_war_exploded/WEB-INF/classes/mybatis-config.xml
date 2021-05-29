@@ -12,6 +12,7 @@
 
     <mappers>
         <mapper class="com.ocr.dao.UserMapper"/>
+        <mapper class="com.ocr.dao.RecordMapper" />
     </mappers>
 
 </configuration>

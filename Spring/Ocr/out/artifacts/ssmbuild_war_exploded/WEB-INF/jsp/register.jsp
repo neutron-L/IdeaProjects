@@ -21,7 +21,7 @@
 <div class="container">
     <h1>OCR</h1>
     <h2 id="Info">Register</h2>
-    <form method="post" action="${pageContext.request.contextPath}/user/addUser">
+    <form method="get" action="${pageContext.request.contextPath}/user/addUser">
         <label for="username" class="col-lg-2 control-label">UserName</label>
         <input id="username" type="text" name="username">
         <label for="password" class="col-lg-2 control-label">Password</label>

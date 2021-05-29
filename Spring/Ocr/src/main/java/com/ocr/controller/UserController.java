@@ -40,11 +40,7 @@ public class UserController {
     }
 
     @RequestMapping("/addUser")
-    public String addUser(@RequestParam("username")String username,
-                          @RequestParam("password")String password) {
-        User user = new User();
-        user.setUserName(username);
-        user.setPassword(password);
+    public String addUser(User user) {
         userService.addUser(user);
         return "login";
     }
