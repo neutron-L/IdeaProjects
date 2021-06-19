@@ -3,5 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ocr.dao.RecordMapper">
-
+<insert id="restoreRecords" parameterType="Record">
+    insert into spring.record values(#{record.userId}, #{result}, #{time})
+</insert>
 </mapper>

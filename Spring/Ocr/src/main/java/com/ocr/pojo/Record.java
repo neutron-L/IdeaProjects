@@ -18,12 +18,28 @@ public class Record {
     private String result;
     private Date time;
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public File getPhoto() {
         return photo;
     }
 
     public void setPhoto(File photo) {
         this.photo = photo;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public Date getTime() {
