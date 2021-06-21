@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to MSHD!</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/x.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1091410_zwryxsfgd4.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+     <script>
+         var token_csrf = "{{ csrf_token }}";
+
+
+        function func(value){
+                //alert(value);
+                $.ajax({
+                headers: {"X-CSRFToken": token_csrf},
+                type:"post",
+                url:"/test_url/",
+                /*contentType:"application/json; charset=UTF-8",
+                data:{'data':JSON.stringify(value)},*/
+                data:{"data1": value},
+                success:function(arg){
+                   /* $("#i3").val(arg)*/
+                }
+            })
+        }
+
+
+    </script>
+
+</head>
+<body>
+<header class="header" style="z-index:999">
+    <div class="header_right" style="z-index:999">
+        <ul>
+            <li class="show_list" >
+                <a type="button" href="/" style="text-align:center;padding: 30px 30px 30px 30px;
+                line-height: 60px;text-decoration: none;border: none;color:#ffffff;">首页</a></li>
+            <li class="show_list" id="showList2">
+                <span>人员伤亡及失踪</span>
+                <div style="position: absolute;z-index: 999;">
+                <ul class="move_list">
+                    <a type="button" name="101"  onclick="func(this.name)">死亡</a>
+                    <a type="button" name="102"  onclick="func(this.name)">受伤</a>
+                    <a type="button" name="103"  onclick="func(this.name)">失踪</a>
+                </ul>
+                </div>
+            </li>
+            <li class="show_list" id="showList3">
+                <span>房屋破坏</span>
+                <div style="position: absolute;z-index: 999">
+                <ul class="move_list">
+                    <a type="button" name="201"  onclick="func(this.name)">土木</a>
+                    <a type="button" name="202" onclick="func(this.name)" >砖木</a>
+                    <a type="button" name="203" onclick="func(this.name)" >砖混</a>
+                     <a type="button" name="203"  onclick="func(this.name)">框架</a>
+                     <a type="button" name="203"  onclick="func(this.name)">其他</a>
+                </ul>
+                </div>
+            </li>
+            <li class="show_list">
+                <span>生命线工程灾情</span>
+                <div style="position: absolute;z-index: 999">
+                <ul class="move_list">
+                    <a type="button" name="331" href="/data/331" onclick="func(this.name)">交通</a>
+                    <a type="button" name="332" href="/data/332" onclick="func(this.name)">供水</a>
+                    <a type="button" name="333" href="/data/333" onclick="func(this.name)">输油</a>
+                    <a type="button" name="334" href="/data/334" onclick="func(this.name)">燃气</a>
+                    <a type="button" name="335" href="/data/335" onclick="func(this.name)">电力</a>
+                     <a type="button" name="336" href="/data/336" onclick="func(this.name)">通信</a>
+                     <a type="button" name="337" href="/data/337" onclick="func(this.name)">水利</a>
+                </ul>
+                </div>
+            </li>
+            <li class="show_list">
+                <span>次生灾害</span>
+                <div style="position: absolute;z-index: 999">
+                <ul class="move_list">
+                    <a type="button" name="401"  onclick="func(this.name)">崩塌</a>
+                    <a type="button" name="402"  onclick="func(this.name)">滑坡</a>
+                     <a type="button" name="203"  onclick="func(this.name)">泥石流</a>
+                     <a type="button" name="203"  onclick="func(this.name)">岩溶塌陷</a>
+                     <a type="button" name="203"  onclick="func(this.name)">地裂缝</a>
+                     <a type="button" name="203"  onclick="func(this.name)">地面沉降</a>
+                     <a type="button" name="203"  onclick="func(this.name)">其他</a>
+                </ul>
+                </div>
+            </li>
+            <li class="show_list" id="showList2">
+                <span>震情</span>
+                <div style="position: absolute;z-index: 999">
+                <ul class="move_list">
+                    <a type="button" name="101"  onclick="func(this.name)">基本</a>
+                    <a type="button" name="102"  onclick="func(this.name)">灾情预测</a>
+                </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+    <div style="margin: 0 auto;margin-top: 50px"> <!--class="wrap"-->
+        <div> <!--id="left"-->
+            <form class="form-horizontal" method="POST" action="/status/" enctype="multipart/form-data">
+                <div style="margin:0 auto; width:1000px; height:auto;text-align:center;color:whitesmoke;background-color: #4f4f4f;opacity: 0.8">
+                    <div style="margin:0 auto; width:800px; height:auto;text-align:center;color:whitesmoke;">
+
+                            <h4 style="margin-bottom: 50px;padding-top: 50px">数据请求列表{{type}}</h4>
+                            <table id="id_list_table">
+                                <tr style="height: 40px">
+                                <th style="width: 200px">请求日期</th>
+                                    <th style="width: 100px">灾情类型</th>
+                                    <th style="width: 350px">编码</th>
+                                    <th style="width: 100px">请求URL</th>
+                                    <th style="width: 200px">上报单位</th>
+                                    <th style="width: 100px">处理状态</th>
+                                </tr>
+
+                                {% for item in items %}
+                                    <table cellspacing="0" cellpadding="10" style="height:32px;border: none; border-bottom: dashed 1px #ddd">
+
+                                        <tr>
+                                            <td style="width: 200px">{{item.2}}</td>
+                                            <td style="width: 100px">{{item.3}} </td>
+                                            <td style="width: 270px">{{item.1}}</td>
+                                            <td style="width: 100px">{{item.5}}</td>
+                                            <td style="width: 200px">{{item.6}}</td>
+                                            <td style="width: 100px">{{item.4}}</td>
+                                            {% if flag == 1%}
+                                                <td style="width: 200px"><button class="send_btn" type="submit" name="send" value="{{item.0}}">发送数据</button></td>
+                                            {% endif %}
+                                        </tr>
+                                    </table>
+                                {% endfor %}
+                            </table>
+
+
+                            <form class="form-horizontal" method="POST" action="/status" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input class="submit_btn" type="submit" class="btn" name="status" value="已处理" style="margin-top: 50px;margin-bottom: 100px">
+                                <input class="submit_btn" type="submit" class="btn" name="status" value="未处理" style="margin-top: 50px;margin-left: 40px">
+                            </form>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

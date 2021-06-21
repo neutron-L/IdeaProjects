@@ -1,0 +1,32 @@
+[
+  {
+    "province": "青海省",
+    "city": "果洛藏族自治州",
+    "country": "玛多县",
+    "town": "黄河乡",
+    "category": "次生灾害崩塌",
+    "date": "2021-05-22 02:27:07",
+    "location": "青海省果洛藏族自治州玛多县",
+    "status": "2",
+    "type": "1",
+    "picture": "41611.png",
+    "note": "轻微",
+    "reportingUnit": "青海地震局",
+    "earthquakeId": "63262620000020210522020400"
+  },
+  {
+    "province": "青海省",
+    "city": "果洛藏族自治州",
+    "country": "玛多县",
+    "town": "黄河乡",
+    "category": "次生灾害滑坡",
+    "date": "2021-05-22 02:13:21",
+    "location": "青海省果洛藏族自治州玛多县",
+    "type": "2",
+    "status": "2",
+    "picture": "41612.png",
+    "note": "轻微",
+    "reportingUnit": "青海地震局",
+    "earthquakeId": "63262620000020210522020400"
+  }
+]
